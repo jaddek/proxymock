@@ -8,7 +8,7 @@ namespace Calendario.API.Controllers;
 [Route(("api"))]
 public class IndexController(ILogger<IndexController> _logger) : ControllerBase
 {
-    private readonly DBContext dbContext;
+    private readonly DBContext dbContext = null!;
 
     [HttpGet("/")]
     public IActionResult Index()

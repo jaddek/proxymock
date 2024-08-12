@@ -1,13 +1,11 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Calendario.API.Entities
 {
-    public class Project
+    [Table("projects")]
+    public class Project : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public ICollection<Endpoint>? Urls { get; }
     }
 }
