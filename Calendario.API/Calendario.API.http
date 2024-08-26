@@ -1,6 +1,16 @@
 @Calendario.API_HostAddress = http://localhost:5024
 
-GET {{Calendario.API_HostAddress}}/weatherforecast/
+POST {{Calendario.API_HostAddress}}/api/project
+Content-Type: application/json
 Accept: application/json
 
+
+{
+    "title": "asdsad"
+}
+
+
 ###
+GET {{Calendario.API_HostAddress}}/api/projects
+Content-Type: application/json
+Accept: application/json

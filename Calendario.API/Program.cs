@@ -1,7 +1,5 @@
-using Calendario.API.Database;
+using Calendario.API.Domain.Project;
 using Calendario.API.Extensions;
-using Calendario.API.Options;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -5,7 +5,7 @@ namespace Calendario.API.Database;
 
 public class DBContext(DbContextOptions options) : DbContext(options)
 {
-    public DbSet<Project> Projects { get; set; }
+    public virtual DbSet<Project> Projects { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

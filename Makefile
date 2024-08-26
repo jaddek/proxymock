@@ -12,6 +12,7 @@ restart: down up
 ps: local-docker-ps
 logs: local-docker-logs
 build: local-build
+tr: tests-run
 
 local-run:
 	./mvnw spring-boot:run
@@ -30,6 +31,9 @@ local-docker-ps:
 
 local-docker-logs:
 	$(DOCKER_COMPOSE_ENV_LOCAL) logs
+
+tests-run:
+	dotnet test --logger "console;verbosity=detailed;consoleLoggerParameters=PerformanceSummary"
 
 .PHONY: tests
 
