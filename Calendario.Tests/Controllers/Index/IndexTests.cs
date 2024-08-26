@@ -7,17 +7,9 @@ namespace Calendario.Tests.Controllers.Index;
 
 public class IndexTests
 {
-    private static ProjectRepository GetRepository()
-    {
-        Mock<ProjectRepository> mockPojectRepository = new(null!);
-        mockPojectRepository.Setup(static m => m.FindProjects()).ReturnsAsync([]);
-
-        return mockPojectRepository.Object;
-    }
-
     private static IndexController GetController()
     {
-        return new(GetRepository());
+        return new();
     }
 
     [Fact]

@@ -17,4 +17,15 @@ public class ProjectRepository(DBContext dbContext)
         _dbContext.Add(project);
         await _dbContext.SaveChangesAsync();
     }
+
+    public async virtual Task UpdateProject(Entities.Project project)
+    {
+        _dbContext.Update(project);
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async virtual Task<Entities.Project?> FindProject(Guid Id)
+    {
+        return await _dbContext.Projects.FindAsync(Id);
+    }
 }

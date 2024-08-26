@@ -1,18 +1,11 @@
-using Calendario.API.Database;
-using Calendario.API.Domain.Project;
-using Calendario.API.Domain.Project.Request;
-using Calendario.API.Entities;
-using Mapster;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Calendario.API.Controllers;
 
 [Route(("/api"))]
 [ApiController]
-public class IndexController(ProjectRepository repository) : ControllerBase
+public class IndexController() : ControllerBase
 {
-    private readonly ProjectRepository _repository = repository;
-
     [HttpGet("/")]
     async public Task<IActionResult> Index()
     {
@@ -27,26 +20,6 @@ public class IndexController(ProjectRepository repository) : ControllerBase
         await Task.Delay(100);
 
         return Ok();
-    }
-
-    [HttpPost("project")]
-    public async Task<IActionResult> CreateProject([FromBody] ProjectDTO request)
-    {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-
-        Project project = request.Adapt<Project>();
-        await _repository.CreateProject(project);
-
-        return Ok(project);
-    }
-
-    [HttpGet("projects")]
-    public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
-    {
-        return Ok(await _repository.FindProjects());
     }
 
     [HttpPost("project/{projectId}/endpoint/{endpointId}/scheme/{schemeId}")]
