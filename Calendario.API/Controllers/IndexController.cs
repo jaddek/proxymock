@@ -6,22 +6,6 @@ namespace Calendario.API.Controllers;
 [ApiController]
 public class IndexController() : ControllerBase
 {
-    [HttpGet("/")]
-    async public Task<IActionResult> Index()
-    {
-        await Task.Delay(100);
-
-        return Ok();
-    }
-
-    [HttpGet("health")]
-    async public Task<IActionResult> Health()
-    {
-        await Task.Delay(100);
-
-        return Ok();
-    }
-
     [HttpPost("project/{projectId}/endpoint/{endpointId}/scheme/{schemeId}")]
     async public Task<IActionResult> AttachSchemeToEndpoint(int projectId, int endpointId, int schemeId)
     {
