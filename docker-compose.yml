@@ -1,7 +1,7 @@
 services:
   api:
     build:
-      dockerfile: ./Calendario.API/Dockerfile
+      dockerfile: ./Proxymock.API/Dockerfile
     ports:
       - 8080:8080
     depends_on:
