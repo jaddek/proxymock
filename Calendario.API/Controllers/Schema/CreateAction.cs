@@ -8,7 +8,7 @@ namespace Calendario.API.Controllers.Schema
     public class CreateAction() : ControllerBase
     {
         [HttpPost("/scheme/{schemeId}")]
-        async public Task<IActionResult> Invoke(Guid schemeId)
+        public async Task<IActionResult> Invoke(Guid schemeId)
         {
             await Task.Delay(100);
 

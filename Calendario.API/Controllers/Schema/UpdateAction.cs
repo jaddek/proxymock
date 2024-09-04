@@ -9,7 +9,7 @@ namespace Calendario.API.Controllers.Schema
     {
 
         [HttpPut("/scheme/{schemeId}")]
-        async public Task<IActionResult> Invoke(Guid schemeId)
+        public async Task<IActionResult> Invoke(Guid schemeId)
         {
             await Task.Delay(100);
 

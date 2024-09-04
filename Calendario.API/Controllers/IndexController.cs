@@ -7,7 +7,7 @@ namespace Calendario.API.Controllers;
 public class IndexController() : ControllerBase
 {
     [HttpPost("project/{projectId}/endpoint/{endpointId}/scheme/{schemeId}")]
-    async public Task<IActionResult> AttachSchemeToEndpoint(int projectId, int endpointId, int schemeId)
+    public async Task<IActionResult> AttachSchemeToEndpoint(int projectId, int endpointId, int schemeId)
     {
         await Task.Delay(100);
 
@@ -15,7 +15,7 @@ public class IndexController() : ControllerBase
     }
 
     [HttpPost("project/{projectId}/endpoint")]
-    async public Task<IActionResult> AttachEndpoint(int projectId)
+    public async Task<IActionResult> AttachEndpoint(int projectId)
     {
         await Task.Delay(100);
 
@@ -23,7 +23,7 @@ public class IndexController() : ControllerBase
     }
 
     [HttpPost("project/{projectId}/scheduler/{schedulerId}")]
-    async public Task<IActionResult> AttachScheduler(int projectId, int schedulerId)
+    public async Task<IActionResult> AttachScheduler(int projectId, int schedulerId)
     {
         await Task.Delay(100);
 
@@ -31,7 +31,7 @@ public class IndexController() : ControllerBase
     }
 
     [HttpPost("project/{projectId}/scheduler")]
-    async public Task<IActionResult> CreateScheduler(int projectId)
+    public async Task<IActionResult> CreateScheduler(int projectId)
     {
         await Task.Delay(100);
 

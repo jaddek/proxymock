@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Calendario.API.Controllers.Index;
-
-[Route(("/api"))]
-[ApiController]
-public class IndexAction() : ControllerBase
+namespace Calendario.API.Controllers.Index
 {
-    [HttpGet("/")]
-    async public Task<IActionResult> Index()
+    [Route(("/api"))]
+    [ApiController]
+    public class IndexAction() : ControllerBase
     {
-        await Task.Delay(100);
+        [HttpGet("/")]
+        public async Task<IActionResult> Index()
+        {
+            await Task.Delay(100);
 
-        return Ok();
+            return Ok();
+        }
     }
 }

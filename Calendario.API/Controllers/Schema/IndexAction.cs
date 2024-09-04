@@ -8,7 +8,7 @@ namespace Calendario.API.Controllers.Schema
     public class IndexAction() : ControllerBase
     {
         [HttpPost("/schemes")]
-        async public Task<IActionResult> Invoke()
+        public async Task<IActionResult> Invoke()
         {
             await Task.Delay(100);
 

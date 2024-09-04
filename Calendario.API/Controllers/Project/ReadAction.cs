@@ -7,9 +7,6 @@ namespace Calendario.API.Controllers.Project
     [ApiController]
     public class ReadAction(ProjectRepository repository) : ControllerBase
     {
-        private readonly ProjectRepository _repository = repository;
-
-
         [HttpGet("project/{id}")]
         public async Task<IActionResult> Invoke(Guid id)
         {
@@ -25,7 +22,7 @@ namespace Calendario.API.Controllers.Project
 
         private async Task<Entities.Project?> LoadProject(Guid Id)
         {
-            Entities.Project? Project = await _repository.FindProject(Id);
+            Entities.Project? Project = await repository.FindProject(Id);
 
             return Project;
         }

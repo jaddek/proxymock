@@ -8,7 +8,7 @@ namespace Calendario.API.Controllers.Schema
     public class DeleteAction() : ControllerBase
     {
         [HttpDelete("/scheme/{schemeId}")]
-        async public Task<IActionResult> Invoke(Guid schemeId)
+        public async Task<IActionResult> Invoke(Guid schemeId)
         {
             await Task.Delay(100);
 

@@ -1,4 +1,3 @@
-using Calendario.API.Domain.Project;
 using Calendario.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);

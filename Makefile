@@ -5,7 +5,7 @@ COMPOSE_FILE = docker-compose.yml
 DOCKER_COMPOSE_ENV_LOCAL = $(DOCKER_COMPOSE) -f $(COMPOSE_FILE)
 
 run: local-run
-build-up: local-build down up
+bup: local-build down up
 up: local-docker-up
 down: local-docker-down
 restart: down up
@@ -15,11 +15,10 @@ build: local-build
 tr: tests-run
 
 local-run:
-	./mvnw spring-boot:run
+	dotnet run
 
 local-build:
-	./mvnw -Dmaven.test.skip=true package
-
+	dotnet build
 local-docker-up:
 	$(DOCKER_COMPOSE_ENV_LOCAL) up -d --build --force-recreate --remove-orphans
 

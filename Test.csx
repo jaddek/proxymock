@@ -1,38 +1,34 @@
-// using System.IO;  // include the System.IO namespace
-// Console.WriteLine("adad");
+using HttpClient;
 
-// List<int> l = new([1, 2, 3, 5]);
-
-// foreach (int i in l)
+// Directory.CreateDirectory("new_directory");
+// try
 // {
-//     Console.WriteLine(i);
+//     Directory.CreateDirectory("new_directory");
+// }
+// catch (Exception)
+// {
+//     Console.WriteLine("adasd");
 // }
 
+int[] l = [1, 2, 3, 4, 5];
+var l2 = (1, "asdasd", true, false);
+foreach (var i in IterateTuple(l2))
+{
+    Console.WriteLine(i);
+}
 
+static IEnumerable<object> IterateTuple<T1, T2, T3>((T1, T2, T3) tuple)
+{
+    yield return tuple.Item1;
+    yield return tuple.Item2;
+    yield return tuple.Item3;
+}
 
-// string writeText = "Hello World!";  // Create a text string
-// File.WriteAllText("filename.txt", writeText);  // Create a file and write the content of writeText to it
+string url = "https://jsonplaceholder.typicode.com/posts"
 
-// string readText = File.ReadAllText("filename.txt");  // Read the contents of the file
-// Console.WriteLine(readText);  // Output the content
+using HttpClient client = new() {
 
+HttpResponseMessage message = await client.GetAsync(url);
 
-StringBuilder sb = new StringBuilder("ABC", 50);
-
-// Append three characters (D, E, and F) to the end of the StringBuilder.
-sb.Append(new char[] { 'D', 'E', 'F' });
-
-// Append a format string to the end of the StringBuilder.
-sb.AppendFormat("GHI{0}{1}", 'J', 'k');
-
-// Display the number of characters in the StringBuilder and its string.
-Console.WriteLine("{0} chars: {1}", sb.Length, sb.ToString());
-
-// Insert a string at the beginning of the StringBuilder.
-sb.Insert(0, "Alphabet: ");
-
-// Replace all lowercase k's with uppercase K's.
-sb.Replace('k', 'K');
-
-// Display the number of characters in the StringBuilder and its string.
-Console.WriteLine("{0} chars: {1}", sb.Length, sb.ToString());
+string responseBody = await message.Conent.ReadAsStringAsync();
+}

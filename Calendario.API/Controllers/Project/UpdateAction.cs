@@ -9,8 +9,6 @@ namespace Calendario.API.Controllers.Project
     [ApiController]
     public class UpdateAction(ProjectRepository repository) : ControllerBase
     {
-        private readonly ProjectRepository _repository = repository;
-
         [HttpPut("project/{id}")]
         public async Task<IActionResult> Invoke([FromBody] ProjectDTO request, Guid id)
         {
@@ -19,24 +17,24 @@ namespace Calendario.API.Controllers.Project
                 return BadRequest(ModelState);
             }
 
-            Entities.Project? Project = await LoadProject(id);
+            Entities.Project? project = await LoadProject(id);
 
-            if (Project is null)
+            if (project is null)
             {
                 return NotFound();
             }
 
-            request.Adapt(Project);
-            await _repository.UpdateProject(Project);
+            request.Adapt(project);
+            await repository.UpdateProject(project);
 
-            return Ok(Project);
+            return Ok(project);
         }
 
         private async Task<Entities.Project?> LoadProject(Guid Id)
         {
-            Entities.Project? Project = await _repository.FindProject(Id);
+            Entities.Project? project = await repository.FindProject(Id);
 
-            return Project;
+            return project;
         }
     }
 }
