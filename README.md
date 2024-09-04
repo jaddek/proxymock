@@ -1,4 +1,4 @@
-![Tests main branch](https://github.com/jaddek/proxymock/actions/workflows/main.yml/badge.svg?branch=main)
+![Tests main branch](https://github.com/jaddek/proxymock/actions/workflows/main.yml/badge.svg)
 
 ## Project idea:
 
