@@ -1,4 +1,5 @@
-[![test-workflow](https://github.com/jaddek/proxymock/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/jaddek/proxymock/actions/workflows/main.yaml)
+[![Main](https://github.com/jaddek/proxymock/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/jaddek/proxymock/actions/workflows/main.yaml)
+[![SonarCloud](https://github.com/jaddek/proxymock/actions/workflows/sonarcube.yaml/badge.svg)](https://github.com/jaddek/proxymock/actions/workflows/sonarcube.yaml)
 ## Project idea:
 
 General mock service,
