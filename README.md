@@ -1,5 +1,4 @@
-![Tests main branch](https://github.com/jaddek/proxymock/actions/workflows/main.yml/badge.svg)
-
+[![test-workflow](https://github.com/jaddek/proxymock/actions/workflows/main.yaml/badge.svg)](https://github.com/jaddek/proxymock/actions/workflows/main.yaml)
 ## Project idea:
 
 General mock service,
