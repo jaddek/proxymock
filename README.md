@@ -1,4 +1,4 @@
-[![test-workflow](https://github.com/jaddek/proxymock/actions/workflows/main.yaml/badge.svg)](https://github.com/jaddek/proxymock/actions/workflows/main.yaml)
+[![test-workflow](https://github.com/jaddek/proxymock/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/jaddek/proxymock/actions/workflows/main.yaml)
 ## Project idea:
 
 General mock service,
