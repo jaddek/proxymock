@@ -1,0 +1,16 @@
+@Proxymock.API_HostAddress = http://localhost:5024
+
+POST {{Proxymock.API_HostAddress}}/api/project
+Content-Type: application/json
+Accept: application/json
+
+
+{
+    "title": "asdsad"
+}
+
+
+###
+GET {{Proxymock.API_HostAddress}}/api/projects
+Content-Type: application/json
+Accept: application/json
