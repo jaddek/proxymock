@@ -1,3 +1,5 @@
+![Tests main branch](https://github.com/jaddek/proxymock/actions/workflows/main.yml/badge.svg?branch=main)
+
 ## Project idea:
 
 General mock service,
