@@ -6,8 +6,9 @@ namespace Proxymock.API.Database;
 
 public class DBContext(DbContextOptions options) : DbContext(options)
 {
-    public virtual DbSet<Project> Projects { get; set; }
-    public virtual DbSet<Endpoint> Endpoints { get; set; }
+    public virtual DbSet<Project> Projects { get; init; }
+    public virtual DbSet<Endpoint> Endpoints { get; init; }
+    public virtual DbSet<Schema> Schemas { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
