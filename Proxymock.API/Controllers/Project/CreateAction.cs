@@ -1,26 +1,25 @@
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
-using Proxymock.API.Domain.Project;
-using Proxymock.API.Domain.Project.Request;
+using Proxymock.API.Domain.Project.Project;
+using Proxymock.API.Domain.Project.Project.Request;
 
-namespace Proxymock.API.Controllers.Project
+namespace Proxymock.API.Controllers.Project;
+
+[Route(("/api"))]
+[ApiController]
+public class CreateAction(ProjectRepository repository) : ControllerBase
 {
-    [Route(("/api"))]
-    [ApiController]
-    public class CreateAction(ProjectRepository repository) : ControllerBase
+    [HttpPost("project")]
+    public async Task<IActionResult> Invoke([FromBody] ProjectDto request)
     {
-        [HttpPost("project")]
-        public async Task<IActionResult> Invoke([FromBody] ProjectDTO request)
+        if (!ModelState.IsValid)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Entities.Project project = request.Adapt<Entities.Project>();
-            await repository.CreateProject(project);
-
-            return Ok(project);
+            return BadRequest(ModelState);
         }
+
+        Entities.Project project = request.Adapt<Entities.Project>();
+        await repository.CreateProject(project);
+
+        return Ok(project);
     }
 }

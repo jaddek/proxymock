@@ -1,30 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
-using Proxymock.API.Domain.Project;
+using Proxymock.API.Domain.Project.Project;
 
-namespace Proxymock.API.Controllers.Project
+namespace Proxymock.API.Controllers.Project;
+
+[Route(("/api"))]
+[ApiController]
+public class ReadAction(ProjectRepository repository) : ControllerBase
 {
-    [Route(("/api"))]
-    [ApiController]
-    public class ReadAction(ProjectRepository repository) : ControllerBase
+    [HttpGet("project/{id}")]
+    public async Task<IActionResult> Invoke(Guid id)
     {
-        [HttpGet("project/{id}")]
-        public async Task<IActionResult> Invoke(Guid id)
+        Entities.Project? project = await LoadProject(id);
+
+        if (project is null)
         {
-            Entities.Project? Project = await LoadProject(id);
-
-            if (Project is null)
-            {
-                return NotFound();
-            }
-
-            return Ok(Project);
+            return NotFound();
         }
 
-        private async Task<Entities.Project?> LoadProject(Guid Id)
-        {
-            Entities.Project? Project = await repository.FindProject(Id);
+        return Ok(project);
+    }
 
-            return Project;
-        }
+    private async Task<Entities.Project?> LoadProject(Guid id)
+    {
+        Entities.Project? project = await repository.FindOneAsync(id);
+
+        return project;
     }
 }

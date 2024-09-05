@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using Proxymock.API.Domain.Project;
-using PE = Proxymock.API.Entities.Project;
-using Proxymock.API.Domain.Project.Request;
 using Proxymock.API.Controllers.Project;
+using Proxymock.API.Domain.Project.Project;
+using Proxymock.API.Domain.Project.Project.Request;
+using PE = Proxymock.API.Entities.Project;
 
 namespace Proxymock.Tests.Unit.Controllers.Project
 {
@@ -11,15 +11,15 @@ namespace Proxymock.Tests.Unit.Controllers.Project
     {
         private static ProjectRepository GetRepository()
         {
-            PE Project = new()
+            PE project = new()
             {
                 Title = "TestTitle"
             };
 
-            Mock<ProjectRepository> mockPojectRepository = new(null!);
-            mockPojectRepository.Setup(static m => m.FindProject(It.IsAny<Guid>())).ReturnsAsync(Project);
+            Mock<ProjectRepository> mockProjectRepository = new(null!);
+            mockProjectRepository.Setup(static m => m.FindOneAsync(It.IsAny<Guid>())).ReturnsAsync(project);
 
-            return mockPojectRepository.Object;
+            return mockProjectRepository.Object;
         }
 
         private static UpdateAction GetController()
@@ -32,9 +32,9 @@ namespace Proxymock.Tests.Unit.Controllers.Project
         [InlineData("Updated title 2", "1d534d25-3c99-45cd-a022-7d9e7db15ebc")]
         public async Task UpdateProjectTest_Success(string title, string id)
         {
-            ProjectDTO projectDTO = new(title);
+            ProjectDto projectDto = new(title);
 
-            var result = await GetController().Invoke(projectDTO, Guid.Parse(id));
+            var result = await GetController().Invoke(projectDto, Guid.Parse(id));
 
             Assert.IsAssignableFrom<IActionResult>(result);
 

@@ -1,14 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Proxymock.API.Database;
 
-namespace Proxymock.API.Domain.Project;
+namespace Proxymock.API.Domain.Project.Project;
 
 public class ProjectRepository(DBContext dbContext)
 {
-
-    public virtual async Task<IEnumerable<Entities.Project>> FindProjects()
+    public virtual async Task<IEnumerable<Entities.Project>> FindAllAsync()
     {
-        return await dbContext.Projects.ToListAsync();
+        return await dbContext
+            .Projects
+            .AsNoTracking()
+            .ToListAsync()
+            ;
     }
 
     public virtual async Task CreateProject(Entities.Project project)
@@ -23,8 +26,8 @@ public class ProjectRepository(DBContext dbContext)
         await dbContext.SaveChangesAsync();
     }
 
-    public virtual async Task<Entities.Project?> FindProject(Guid Id)
+    public virtual async Task<Entities.Project?> FindOneAsync(Guid id)
     {
-        return await dbContext.Projects.FindAsync(Id);
+        return await dbContext.Projects.FindAsync(id);
     }
 }

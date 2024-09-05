@@ -1,11 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Proxymock.API.Entities;
+using Endpoint = Proxymock.API.Entities.Endpoint;
 
 namespace Proxymock.API.Database;
 
 public class DBContext(DbContextOptions options) : DbContext(options)
 {
     public virtual DbSet<Project> Projects { get; set; }
+    public virtual DbSet<Endpoint> Endpoints { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

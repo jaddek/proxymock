@@ -1,18 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Proxymock.API.Controllers.Schema
+namespace Proxymock.API.Controllers.Schema;
+
+[Route(("/api"))]
+[ApiController]
+public class CreateAction() : ControllerBase
 {
-
-    [Route(("/api"))]
-    [ApiController]
-    public class CreateAction() : ControllerBase
+    [HttpPost("/scheme/{schemeId}")]
+    public async Task<IActionResult> Invoke(Guid schemeId)
     {
-        [HttpPost("/scheme/{schemeId}")]
-        public async Task<IActionResult> Invoke(Guid schemeId)
-        {
-            await Task.Delay(100);
+        await Task.Delay(100);
 
-            return Ok();
-        }
+        return Ok();
     }
 }

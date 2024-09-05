@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Proxymock.API.Database;
-using Proxymock.API.Domain.Project;
+using Proxymock.API.Domain.Project.Project;
 using Proxymock.API.Options;
 
 namespace Proxymock.API.Extensions;

@@ -1,18 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Proxymock.API.Controllers.Index
-{
-    [Route(("/"))]
-    [ApiController]
-    public class IndexAction() : ControllerBase
-    {
-        [HttpGet("")]
-        public async Task<IActionResult> Index()
-        {
-            // throw new Excep
-            await Task.Delay(100);
+namespace Proxymock.API.Controllers.Index;
 
-            return Ok();
-        }
+[Route(("/"))]
+[ApiController]
+public class IndexAction() : ControllerBase
+{
+    [HttpGet("")]
+    public async Task<IActionResult> Index()
+    {
+        // throw new Excep
+        await Task.Delay(100);
+
+        return Ok();
     }
 }
