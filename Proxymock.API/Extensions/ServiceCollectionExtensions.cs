@@ -4,22 +4,28 @@ using Proxymock.API.Database;
 using Proxymock.API.Domain.Project;
 using Proxymock.API.Options;
 
-namespace Proxymock.API.Extensions
+namespace Proxymock.API.Extensions;
+
+public static class ServiceCollectionExtensions
 {
-
-    public static class ServiceCollectionExtensions
+    private static void AddDefaultDbContext(this IServiceCollection services, ConfigurationManager configuration)
     {
-        internal static void AddDefaultDbContext(this IServiceCollection services, ConfigurationManager configuration)
-        {
-            services.Configure<DBOptions>(
-                configuration.GetSection(DBOptions.ConfigKey)
-            );
+        services.Configure<DBOptions>(
+            configuration.GetSection(DBOptions.ConfigKey)
+        );
 
-            DBOptions DatabaseOptions = services.BuildServiceProvider().GetRequiredService<IOptions<DBOptions>>().Value;
+        DBOptions databaseOptions = services.BuildServiceProvider().GetRequiredService<IOptions<DBOptions>>().Value;
 
-            services.AddDbContext<DBContext>(options => options.UseNpgsql(DatabaseOptions.ToString()));
-            services.AddScoped<ProjectRepository, ProjectRepository>();
+        services.AddDbContext<DBContext>(options => options.UseNpgsql(databaseOptions.ToString()));
+        services.AddScoped<ProjectRepository, ProjectRepository>();
+    }
 
-        }
+    internal static void AddDefaultServices(this IServiceCollection services, ConfigurationManager configuration)
+    {
+        services.AddControllers();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+        services.AddDefaultDbContext(configuration);
+        services.AddProblemDetails();
     }
 }
