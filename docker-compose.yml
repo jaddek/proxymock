@@ -30,6 +30,8 @@ services:
   broker:
     image: apache/kafka:3.8.0
     container_name: broker
+    ports:
+      - 9092:9092
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
@@ -52,7 +54,7 @@ services:
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
     volumes:
-      - ~/kui/config.yml:/etc/kafkaui/dynamic_config.yaml
+      - ./kui-config.yml:/etc/kafkaui/dynamic_config.yaml
 
 networks:
   net-mock-service-network:
