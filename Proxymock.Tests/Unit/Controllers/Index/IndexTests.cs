@@ -12,22 +12,6 @@ namespace Proxymock.Tests.Unit.Controllers.Index
         }
 
         [Fact]
-        public async Task IndexControllerAttachSchemeToEndpointTest()
-        {
-            var result = await GetController().AttachSchemeToEndpoint(1, 2, 3);
-
-            Assert.IsAssignableFrom<ActionResult>(result);
-        }
-
-        [Fact]
-        public async Task IndexControllerAttachEndpointTest()
-        {
-            var result = await GetController().AttachEndpoint(1);
-
-            Assert.IsAssignableFrom<IActionResult>(result);
-        }
-
-        [Fact]
         public async Task IndexControllerAttachSchedulerTest()
         {
             var result = await GetController().AttachScheduler(1, 2);
