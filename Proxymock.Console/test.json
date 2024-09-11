@@ -1,0 +1,14 @@
+{
+  "id": {
+    "unsigned":"asdasd",
+    "type": "id",
+    "range": {
+      "max": null
+    },
+    "nullable": false
+  },
+  "uuid": {
+    "type": "uuidV4",
+    "nullable": true
+  }
+}
