@@ -3,12 +3,17 @@
     "unsigned":"asdasd",
     "type": "id",
     "range": {
-      "max": null
+      "max": "asd"
     },
     "nullable": false
   },
   "uuid": {
     "type": "uuidV4",
     "nullable": true
+  },
+  "title": {
+    "type": "title",
+    "nullable": true,
+    "length": 255
   }
 }

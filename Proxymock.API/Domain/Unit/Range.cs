@@ -7,6 +7,6 @@ public record Range()
     const int DefaultMax = int.MaxValue;
     const int DefaultMin = int.MinValue;
 
-    public int Min { get; init; } = DefaultMax;
-    public int Max { get; init; } = DefaultMin;
+    public int Min { get; init; } = DefaultMin;
+    public int Max { get; init; } = DefaultMax;
 }

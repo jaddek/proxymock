@@ -1,8 +1,8 @@
 using Newtonsoft.Json.Linq;
+using Proxymock.API.Domain.Project.Schema.Type.Newton;
 using Proxymock.API.Domain.Unit;
 using Spectre.Console;
 using Spectre.Console.Cli;
-using Range = Proxymock.API.Domain.Unit.Range;
 
 namespace Proxymock.Console.Commands;
 
@@ -30,7 +30,7 @@ public class GenerateMockDataBySchemeCommand : Command<GenerateMockDataBySchemeC
 
         string jsonString = File.ReadAllText(settings.File);
 
-        dynamic doc = JObject.Parse(jsonString);
+        var doc = JObject.Parse(jsonString);
 
         HandleJsonDocument(doc);
 
@@ -40,45 +40,36 @@ public class GenerateMockDataBySchemeCommand : Command<GenerateMockDataBySchemeC
     private static readonly Dictionary<string, Func<JToken, BaseUnit>> Dict = new()
     {
         { "id", HandleId },
-        { "uuid", HandleUuid }
+        { "uuidV4", HandleUuid },
+        { "title", HandleTitle }
     };
 
     private static readonly Dictionary<string, BaseUnit> Dict2 = new();
 
 
-    private static void HandleJsonDocument(dynamic doc)
+    private static void HandleJsonDocument(JObject doc)
     {
-        foreach (string key in Dict.Keys)
+        foreach (var node in doc)
         {
-            Dict2[key] = Dict[key](doc[key]);
+            var parser = Dict[node.Value?["type"]?.ToString() ?? throw new Exception("Invalid JSON")];
+            
+            Dict2[node.Key] = parser(node.Value ?? throw new Exception("bla bla bla"));
         }
-
-        // var a = 1;
+        var c = 1;
     }
 
+    private static BaseUnit HandleTitle(JToken jToken)
+    {
+        return TitleFactory.BuildFromJson(jToken);
+    }
+    
     private static BaseUnit HandleId(JToken jToken)
     {
-        Range range = new()
-        {
-            Min = int.Parse(jToken["range"]?["min"]?.ToString() ?? int.MinValue.ToString()),
-            Max = int.Parse(jToken["range"]?["max"]?.ToString() ?? int.MaxValue.ToString())
-        };
-
-        return new Id
-        {
-            Type = jToken["type"]?.ToString() ?? string.Empty,
-            Unsigned = bool.TryParse(jToken["unsigned"]?.ToString(), out _),
-            Nullable = bool.TryParse(jToken["nullable"]?.ToString(), out _),
-            Range = range,
-        };
+        return IdFactory.BuildFromJson(jToken);
     }
 
     private static BaseUnit HandleUuid(JToken jToken)
     {
-        return new Uuid
-        {
-            Type = jToken["type"]?.ToString() ?? string.Empty,
-            Nullable = jToken.Value<bool>("nullable"),
-        };
+        return UuidFactory.BuildFromJson(jToken);
     }
 }
