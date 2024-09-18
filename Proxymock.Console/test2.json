@@ -1,0 +1,35 @@
+{
+  "id": {
+    "type": "id",
+    "attrs": {
+      "unsigned": {},
+      "range": {
+        "max": 123,
+        "min": 0
+      },
+      "nullable": false
+    }
+  },
+  "uuid": {
+    "type": "uuidV4",
+    "attrs": {
+      "nullable": false
+    }
+  },
+  "title": {
+    "type": "title",
+    "attrs": {
+      "nullable": false,
+      "length": 255
+    }
+  },
+  "post": {
+    "type": "nested",
+    "attrs": {
+      "id": {
+      },
+      "title": {
+      }
+    }
+  }
+}

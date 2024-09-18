@@ -1,6 +1,6 @@
 {
   "id": {
-    "unsigned":"asdasd",
+    "unsigned":false,
     "type": "id",
     "range": {
       "max": "asd"

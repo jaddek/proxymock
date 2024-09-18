@@ -7,7 +7,7 @@ using Spectre.Console.Cli;
 IServiceCollection services = new ServiceCollection();
 var registrar = new TypeRegistrar(services);
 
-CommandApp app = new CommandApp(registrar);
+var app = new CommandApp(registrar);
 app.Configure(config =>
 {
     config.AddCommand<GenerateMockDataBySchemeCommand>("mock:generate:data");
