@@ -1,0 +1,55 @@
+{
+  "id": {
+    "type": "id",
+    "attrs": {
+      "unsigned": {},
+      "range": {
+        "max": 123,
+        "min": 0
+      },
+      "isNullable": false
+    }
+  },
+  "uuid": {
+    "type": "UuidV4",
+    "attrs": {
+      "isNullable": false
+    }
+  },
+  "zipcode": {
+    "type": "ZipCode",
+    "attrs": {
+      "isNullable": false
+    }
+  },
+  "City": {
+    "type": "City",
+    "attrs": {
+      "isNullable": false
+    }
+  },
+  "address": {
+    "type": "StreetAddress",
+    "attrs": {
+      "isNullable": false
+    }
+  },
+  "street": {
+    "type": "StreetName",
+    "attrs": {
+      "isNullable": true
+    }
+  },
+  "building": {
+    "type":"BuildingNumber" ,
+    "attrs": {
+      "isNullable": true
+    }
+  },
+  "country": {
+    "type": "Country",
+    "attrs": {
+      "isNullable": true
+    }
+  }
+}

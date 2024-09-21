@@ -1,0 +1,19 @@
+{
+  "id": {
+    "unsigned":false,
+    "type": "id",
+    "range": {
+      "max": "asd"
+    },
+    "nullable": false
+  },
+  "uuid": {
+    "type": "uuidV4",
+    "nullable": true
+  },
+  "title": {
+    "type": "title",
+    "nullable": true,
+    "length": 255
+  }
+}
