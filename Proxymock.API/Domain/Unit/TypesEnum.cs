@@ -2,6 +2,8 @@ namespace Proxymock.API.Domain.Unit;
 
 public enum TypesEnum
 {
+    Unit,
+    
     DateTime,
     Date,
     Address,
@@ -9,4 +11,11 @@ public enum TypesEnum
     String,
     Uuid,
     Email,
+    
+    ZipCode,
+    City,
+    StreetAddress,
+    StreetName,
+    BuildingNumber,
+    Country,
 }

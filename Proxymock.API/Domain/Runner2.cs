@@ -1,19 +1,60 @@
 using Bogus;
 using Proxymock.API.Domain.Unit;
+using Proxymock.API.Domain.Unit.Address;
 
 namespace Proxymock.API.Domain;
 
-public static class Runner2
+public class Runner2
 {
-    public static dynamic? ResolveGen(BaseUnit unit)
+    private readonly Faker _faker = new();
+    private readonly Random _random = new();
+    public dynamic? ResolveGen(BaseUnit unit)
     {
-        return unit.GetType().Name switch
+        if (unit is Address address)
         {
-            "Id" => GenId(unit as Id),
-            "Uuid" => GenUuidV4(unit as Uuid),
-            "Title" => GenTitle(unit as Title),
+            return GenAddress(address);
+        }
+
+        return unit.GetType().FullName switch
+        {
+            "Proxymock.API.Domain.Unit.Id" => GenId(unit as Id),
+            "Proxymock.API.Domain.Unit.Uuid" => GenUuidV4(unit as Uuid),
+            "Proxymock.API.Domain.Unit.Title" => GenTitle(unit as Title),
             _ => null
         };
+    }
+
+    private string? GenAddress(Address unit)
+    {
+        string? result = null;
+        switch (unit.DataType)
+        {
+            case TypesEnum.City:
+                result = _faker.Address.City();
+                break;
+            case TypesEnum.ZipCode:
+                result = _faker.Address.ZipCode();
+                break;
+            case TypesEnum.StreetAddress:
+                result = _faker.Address.StreetAddress();
+                break;
+            case TypesEnum.StreetName:
+                result = _faker.Address.StreetName();
+                break;
+            case TypesEnum.BuildingNumber:
+                result = _faker.Address.BuildingNumber();
+                break;
+            case TypesEnum.Country:
+                result = _faker.Address.Country();
+                break;
+        }
+
+        if (unit.Nullable && _random.Next(0, 100) < 50)
+        {
+            result = null;
+        }
+        
+        return result;
     }
 
     private static int? GenId(Id? unit)
@@ -22,7 +63,7 @@ public static class Runner2
         {
             throw new Exception("Invalid unit");
         }
-        
+
         if (unit.Nullable)
         {
             return null;
@@ -36,13 +77,13 @@ public static class Runner2
         return random.Next(min, max);
     }
 
-    public static Guid? GenUuidV4(Uuid? unit)
+    private static Guid? GenUuidV4(Uuid? unit)
     {
         if (unit == null)
         {
             throw new Exception("Invalid unit");
         }
-        
+
         if (unit.Nullable)
         {
             return null;
@@ -51,13 +92,13 @@ public static class Runner2
         return Guid.NewGuid();
     }
 
-    public static string? GenTitle(Title? unit)
+    private static string? GenTitle(Title? unit)
     {
         if (unit == null)
         {
             throw new Exception("Invalid unit");
         }
-        
+
         if (unit.Nullable)
         {
             return null;

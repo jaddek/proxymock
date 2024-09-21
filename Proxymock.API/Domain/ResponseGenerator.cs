@@ -1,17 +1,16 @@
+using Bogus;
 using Proxymock.API.Domain.Unit;
 
 namespace Proxymock.API.Domain;
 
-public static class ResponseGenerator
+public class ResponseGenerator(Runner2 runner)
 {
-    public static dynamic Run(Dictionary<string, BaseUnit> units)
+    public dynamic Run(Dictionary<string, BaseUnit?> units)
     {
-        var dict = new Dictionary<string, dynamic>();
+        var dict = new Dictionary<string, dynamic?>();
         foreach (var unit in units)
         {
-            var v = unit.Value;
-            
-            dict[unit.Key] = Runner2.ResolveGen(v);
+            dict[unit.Key] = unit.Value is null ? null : runner.ResolveGen(unit.Value);
         }
 
         return dict;

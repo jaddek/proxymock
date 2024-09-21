@@ -11,25 +11,45 @@
     }
   },
   "uuid": {
-    "type": "uuidV4",
+    "type": "UuidV4",
     "attrs": {
       "nullable": false
     }
   },
-  "title": {
-    "type": "title",
+  "zipcode": {
+    "type": "ZipCode",
     "attrs": {
-      "nullable": false,
-      "length": 255
+      "nullable": false
     }
   },
-  "post": {
-    "type": "nested",
+  "City": {
+    "type": "City",
     "attrs": {
-      "id": {
-      },
-      "title": {
-      }
+      "nullable": false
+    }
+  },
+  "address": {
+    "type": "StreetAddress",
+    "attrs": {
+      "nullable": false
+    }
+  },
+  "street": {
+    "type": "StreetName",
+    "attrs": {
+      "nullable": true
+    }
+  },
+  "building": {
+    "type":"BuildingNumber" ,
+    "attrs": {
+      "nullable": true
+    }
+  },
+  "country": {
+    "type": "Country",
+    "attrs": {
+      "nullable": true
     }
   }
 }
