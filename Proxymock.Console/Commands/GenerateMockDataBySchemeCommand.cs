@@ -21,6 +21,7 @@ public class GenerateMockDataBySchemeCommand(ResponseGenerator generator)
         var jsonResponse = JsonSerializer.Serialize(response);
         
         System.Console.WriteLine(jsonResponse);
-        return 0;
+        
+        return (int)CommandResponseEnum.ResultSuccess;
     }
 }
