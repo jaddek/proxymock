@@ -7,49 +7,49 @@
         "max": 123,
         "min": 0
       },
-      "nullable": false
+      "isNullable": false
     }
   },
   "uuid": {
     "type": "UuidV4",
     "attrs": {
-      "nullable": false
+      "isNullable": false
     }
   },
   "zipcode": {
     "type": "ZipCode",
     "attrs": {
-      "nullable": false
+      "isNullable": false
     }
   },
   "City": {
     "type": "City",
     "attrs": {
-      "nullable": false
+      "isNullable": false
     }
   },
   "address": {
     "type": "StreetAddress",
     "attrs": {
-      "nullable": false
+      "isNullable": false
     }
   },
   "street": {
     "type": "StreetName",
     "attrs": {
-      "nullable": true
+      "isNullable": true
     }
   },
   "building": {
     "type":"BuildingNumber" ,
     "attrs": {
-      "nullable": true
+      "isNullable": true
     }
   },
   "country": {
     "type": "Country",
     "attrs": {
-      "nullable": true
+      "isNullable": true
     }
   }
 }

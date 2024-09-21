@@ -1,6 +1,7 @@
 namespace Proxymock.API.Domain.Unit;
 
-public record Unit : BaseUnit
+public abstract record Unit
 {
-    public bool Nullable { get; init; }
+    public virtual TypesEnum DataType { get; } = TypesEnum.Unit;
+    public virtual bool IsNullable { get; init; } = true;
 }

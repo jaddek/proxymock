@@ -1,19 +1,19 @@
 using System.Text.Json;
-using Proxymock.API.Domain.Unit;
 using Proxymock.API.Domain.Unit.Address;
+using Proxymock.API.Domain.Unit.Base;
 
 namespace Proxymock.API.Domain;
 
 public static class SchemaTransformer
 {
-    public static Dictionary<string, BaseUnit?> TransformSchema(JsonDocument jsonDocument)
+    public static Dictionary<string, Unit.Unit?> TransformSchema(JsonDocument jsonDocument)
     {
         JsonSerializerOptions? options = new()
         {
             PropertyNameCaseInsensitive = true,
         };
 
-        Dictionary<string, BaseUnit?> mirror = new();
+        Dictionary<string, Unit.Unit?> mirror = new();
 
         foreach (var firstLevelProperty in jsonDocument.RootElement.EnumerateObject())
         {
@@ -32,14 +32,13 @@ public static class SchemaTransformer
         return mirror;
     }
 
-    private static BaseUnit? Handle(string key, JsonProperty property, JsonSerializerOptions? options)
+    private static Unit.Unit? Handle(string key, JsonProperty property, JsonSerializerOptions? options)
     {
         var json = property.Value.GetProperty("attrs").GetRawText();
         return key switch
         {
             "Id" => JsonSerializer.Deserialize<Id>(json, options),
             "UuidV4" => JsonSerializer.Deserialize<Uuid>(json, options),
-            "Title" => JsonSerializer.Deserialize<Title>(json, options),
             "ZipCode" => JsonSerializer.Deserialize<ZipCode>(json, options),
             "City" => JsonSerializer.Deserialize<City>(json, options),
             "StreetAddress" => JsonSerializer.Deserialize<StreetAddress>(json, options),

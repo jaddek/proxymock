@@ -7,7 +7,7 @@ using Spectre.Console.Cli;
 
 
 IServiceCollection services = new ServiceCollection();
-services.AddSingleton<Runner2>();
+services.AddSingleton<Runner>();
 services.AddSingleton<ResponseGenerator>();
 
 var registrar = new TypeRegistrar(services);

@@ -1,14 +1,16 @@
 using Bogus;
 using Proxymock.API.Domain.Unit;
 using Proxymock.API.Domain.Unit.Address;
+using Proxymock.API.Domain.Unit.Base;
 
 namespace Proxymock.API.Domain;
 
-public class Runner2
+public class Runner
 {
     private readonly Faker _faker = new();
     private readonly Random _random = new();
-    public dynamic? ResolveGen(BaseUnit unit)
+
+    public dynamic? ResolveGen(Unit.Unit unit)
     {
         if (unit is Address address)
         {
@@ -19,7 +21,6 @@ public class Runner2
         {
             "Proxymock.API.Domain.Unit.Id" => GenId(unit as Id),
             "Proxymock.API.Domain.Unit.Uuid" => GenUuidV4(unit as Uuid),
-            "Proxymock.API.Domain.Unit.Title" => GenTitle(unit as Title),
             _ => null
         };
     }
@@ -49,12 +50,12 @@ public class Runner2
                 break;
         }
 
-        if (unit.Nullable && _random.Next(0, 100) < 50)
-        {
-            result = null;
-        }
-        
-        return result;
+        return IsNextUnitNull(unit) ? null : result;
+    }
+
+    private bool IsNextUnitNull(Unit.Unit unit, int chance = 50)
+    {
+        return unit.IsNullable && _random.Next(0, 100) < chance;
     }
 
     private static int? GenId(Id? unit)
@@ -90,22 +91,5 @@ public class Runner2
         }
 
         return Guid.NewGuid();
-    }
-
-    private static string? GenTitle(Title? unit)
-    {
-        if (unit == null)
-        {
-            throw new Exception("Invalid unit");
-        }
-
-        if (unit.Nullable)
-        {
-            return null;
-        }
-
-        var faker = new Faker();
-
-        return faker.Company.CompanyName();
     }
 }

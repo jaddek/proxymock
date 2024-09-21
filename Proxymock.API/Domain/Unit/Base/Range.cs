@@ -1,6 +1,4 @@
-using System.Collections;
-
-namespace Proxymock.API.Domain.Unit;
+namespace Proxymock.API.Domain.Unit.Base;
 
 public record Range()
 {

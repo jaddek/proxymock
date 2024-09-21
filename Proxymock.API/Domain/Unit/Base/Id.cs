@@ -1,7 +1,6 @@
-namespace Proxymock.API.Domain.Unit;
+namespace Proxymock.API.Domain.Unit.Base;
 
-public record Id(
-) : BaseUnit
+public record Id : Unit
 {
     private readonly bool _unsigned = true;
 
